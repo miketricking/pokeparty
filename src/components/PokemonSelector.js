@@ -50,7 +50,15 @@ class PokemonSelector extends Component {
     const pokemonList = pokemon.length ? (
       pokemon.map(pokemon => {
         return (
-          <div className="col-sm" key={pokemon.id}>
+          <div
+            className="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-1"
+            key={pokemon.id}
+          >
+            <img
+              src={pokemon.sprites.front_default}
+              class="img-fluid"
+              alt="Responsive image"
+            />
             {pokemon.name}
           </div>
         );
