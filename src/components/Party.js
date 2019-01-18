@@ -6,18 +6,41 @@ class Party extends Component {
     const img = null;
 
     const partyList = this.props.party.map(pokemon => {
-      return (
-        <div className="card col-sm" key={pokemon.id}>
-          <img className="card-img-top" src={img} alt="Card cap" />
-          <div className="card-body">
-            <h5 className="card-title">{pokemon.name}</h5>
-            <p className="card-text">{pokemon.content}</p>
-            <a href="#" className="btn btn-primary">
-              Go somewhere
-            </a>
+      if (typeof pokemon.id == "undefined") {
+        return (
+          <div className="card col-sm">
+            <img
+              className="card-img-top"
+              src="https://via.placeholder.com/400"
+              alt="Card cap"
+            />
+            <div className="card-body">
+              <h5 className="card-title">???</h5>
+              <p className="card-text">?</p>
+              <a href="#" className="btn btn-primary">
+                Add a pokemon
+              </a>
+            </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div className="card col-sm" key={pokemon.id}>
+            <img
+              className="card-img-top"
+              src={pokemon.sprites.front_default}
+              alt="Card cap"
+            />
+            <div className="card-body">
+              <h5 className="card-title">{pokemon.name}</h5>
+              <p className="card-text">{pokemon.content}</p>
+              <a href="#" className="btn btn-primary">
+                Go somewhere
+              </a>
+            </div>
+          </div>
+        );
+      }
     });
     return (
       <div className="container">
