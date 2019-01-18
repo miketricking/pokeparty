@@ -1,21 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Party extends Component {
-  state = {
-    pokemon: [
-      { id: 1, name: "pika", content: "eletric type pokemon" },
-      { id: 2, name: "charmander", content: "fire type pokemon" },
-      { id: 3, name: "charmander", content: "fire type pokemon" },
-      { id: 4, name: "charmander", content: "fire type pokemon" },
-      { id: 5, name: "charmander", content: "fire type pokemon" },
-      { id: 6, name: "charmander", content: "fire type pokemon" }
-    ]
-  };
-
   render() {
     const img = null;
 
-    const partyList = this.state.pokemon.map(pokemon => {
+    const partyList = this.props.party.map(pokemon => {
       return (
         <div className="card col-sm" key={pokemon.id}>
           <img className="card-img-top" src={img} alt="Card cap" />
@@ -37,4 +27,10 @@ class Party extends Component {
   }
 }
 
-export default Party;
+const mapStateToProps = state => {
+  return {
+    party: state.party
+  };
+};
+
+export default connect(mapStateToProps)(Party);

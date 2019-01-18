@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { addToParty } from "../actions/pokeActions.js";
 
 class PokemonSelector extends Component {
   state = {
@@ -44,6 +46,9 @@ class PokemonSelector extends Component {
         });
       });
   }
+  handleClick = pokemon => {
+    this.props.addToParty(pokemon);
+  };
   render() {
     const { pokemon } = this.state;
 
@@ -51,12 +56,13 @@ class PokemonSelector extends Component {
       pokemon.map(pokemon => {
         return (
           <div
+            onClick={() => this.handleClick(pokemon)}
             className="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-1"
             key={pokemon.id}
           >
             <img
               src={pokemon.sprites.front_default}
-              class="img-fluid"
+              className="img-fluid"
               alt="Responsive image"
             />
             {pokemon.name}
@@ -75,4 +81,21 @@ class PokemonSelector extends Component {
   }
 }
 
-export default PokemonSelector;
+const mapStateToProps = state => {
+  return {
+    party: state.party
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addToParty: pokemon => {
+      dispatch(addToParty(pokemon));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PokemonSelector);
