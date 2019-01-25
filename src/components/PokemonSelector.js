@@ -47,12 +47,14 @@ class PokemonSelector extends Component {
       });
   }
   handleClick = pokemon => {
-    const uid = new Date().getTime(); // this will need replacing with a better way to create a uid
-    // call the dispatch action that is bound to the props passing in a copy of the pokemon with a uid (without mutating)
-    this.props.addToParty({
-      ...pokemon,
-      uid: uid
-    });
+    // create a copy of the state object so we can make non mutative changes
+    const newPokemon = { ...pokemon };
+
+    // set up a uid for the new object, will need to update Math.random to something better
+    newPokemon.uid = newPokemon.id + "-" + Math.random().toString();
+
+    // call the dispatch action that is bound to the props passing in the new pokemon object
+    this.props.addToParty(newPokemon);
   };
   render() {
     const { pokemon } = this.state;
