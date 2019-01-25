@@ -1,5 +1,12 @@
 const initState = {
-  party: [{}, {}, {}, {}, {}, {}] // set the intial state to empty objects so using .map can display placeholder content until pokemon are selected
+  party: [
+    { uid: 0 },
+    { uid: 1 },
+    { uid: 2 },
+    { uid: 3 },
+    { uid: 4 },
+    { uid: 5 }
+  ] // set the intial state to empty objects so using .map can display placeholder content until pokemon are selected
 };
 
 const rootReducer = (state = initState, action) => {
@@ -7,7 +14,7 @@ const rootReducer = (state = initState, action) => {
     let foundFirstEmptyPoke = false;
 
     const newArray = state.party.map((pokemon, index) => {
-      if (typeof pokemon.id == "undefined" && foundFirstEmptyPoke === false) {
+      if (typeof pokemon.id === "undefined" && foundFirstEmptyPoke === false) {
         foundFirstEmptyPoke = true;
         pokemon = action.payload; // set the data to the first object that ios empty
       }

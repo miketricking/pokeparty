@@ -6,9 +6,9 @@ class Party extends Component {
     const img = null;
 
     const partyList = this.props.party.map(pokemon => {
-      if (typeof pokemon.id == "undefined") {
+      if (typeof pokemon.id === "undefined") {
         return (
-          <div className="card col-sm">
+          <div className="card col-sm" key={pokemon.uid}>
             <img
               className="card-img-top"
               src="https://via.placeholder.com/400"
@@ -20,12 +20,13 @@ class Party extends Component {
               <a href="#" className="btn btn-primary">
                 Add a pokemon
               </a>
+              <h3>{pokemon.uid}</h3>
             </div>
           </div>
         );
       } else {
         return (
-          <div className="card col-sm" key={pokemon.id}>
+          <div className="card col-sm" key={pokemon.uid}>
             <img
               className="card-img-top"
               src={pokemon.sprites.front_default}
@@ -37,6 +38,7 @@ class Party extends Component {
               <a href="#" className="btn btn-primary">
                 Go somewhere
               </a>
+              <h3>{pokemon.uid}</h3>
             </div>
           </div>
         );

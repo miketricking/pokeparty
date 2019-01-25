@@ -15,7 +15,7 @@ class PokemonSelector extends Component {
         // https://github.com/PokeAPI/pokeapi/issues/372
         const allPokemon = res.data.results.slice(0, 151);
 
-        // counter that gets updated each time a pokemon has finished returning allowing for  async requests rather than one at a time
+        // counter that gets updated each time a pokemon has finished returning allowing for async requests rather than one at a time
         let counter = 0;
 
         // setup promise for getting all the data for every pokemon
@@ -47,11 +47,15 @@ class PokemonSelector extends Component {
       });
   }
   handleClick = pokemon => {
-    this.props.addToParty(pokemon);
+    const uid = new Date().getTime(); // this will need replacing with a better way to create a uid
+    // call the dispatch action that is bound to the props passing in a copy of the pokemon with a uid (without mutating)
+    this.props.addToParty({
+      ...pokemon,
+      uid: uid
+    });
   };
   render() {
     const { pokemon } = this.state;
-
     const pokemonList = pokemon.length ? (
       pokemon.map(pokemon => {
         return (
