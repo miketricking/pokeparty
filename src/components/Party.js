@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { removeFromParty } from "../actions/pokeActions.js";
 
 class Party extends Component {
+  handleClick = uid => {
+    console.log(uid);
+    this.props.removeFromParty(uid);
+  };
   render() {
     const img = null;
 
@@ -35,6 +40,13 @@ class Party extends Component {
             <div className="card-body">
               <h5 className="card-title">{pokemon.name}</h5>
               <p className="card-text">{pokemon.content}</p>
+              <button
+                type="button"
+                className="btn btn-outline-danger"
+                onClick={() => this.handleClick(pokemon.uid)}
+              >
+                Remove
+              </button>
               <a href="#" className="btn btn-primary">
                 Go somewhere
               </a>
@@ -58,4 +70,15 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Party);
+const mapDispatchToProps = dispatch => {
+  return {
+    removeFromParty: id => {
+      dispatch(removeFromParty(id));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Party);

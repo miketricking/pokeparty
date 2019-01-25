@@ -25,9 +25,23 @@ const rootReducer = (state = initState, action) => {
       return pokemon;
     });
     return {
+      ...state,
       party: newArray
     };
   }
+
+  if (action.type === "REMOVE_POKEMON") {
+    console.log(action.payload); // for some reason at this point it is undefined
+
+    const newArray = state.party.filter(pokemon => {
+      return pokemon.uid !== action.payload;
+    });
+    return {
+      ...state,
+      party: newArray
+    };
+  }
+
   return state;
 };
 
