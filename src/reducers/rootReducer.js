@@ -31,11 +31,14 @@ const rootReducer = (state = initState, action) => {
   }
 
   if (action.type === "REMOVE_POKEMON") {
-    console.log(action.payload); // for some reason at this point it is undefined
-
     const newArray = state.party.filter(pokemon => {
       return pokemon.uid !== action.payload;
     });
+
+    // Now it has been removed need to add empty object for placeholder spaces
+    const uid = "0-" + Math.random().toString();
+    newArray.push({ uid: uid });
+
     return {
       ...state,
       party: newArray

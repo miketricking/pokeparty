@@ -1,8 +1,7 @@
 export const removeFromParty = uid => {
-  console.log(uid);
   return {
     type: "REMOVE_POKEMON",
-    playload: uid
+    payload: uid
   };
 };
 
