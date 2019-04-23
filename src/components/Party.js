@@ -7,6 +7,12 @@ class Party extends Component {
     console.log(uid);
     this.props.removeFromParty(uid);
   };
+  handleSaveClick = () => {
+    const savedPartyList = this.props.party.map(pokemon => {
+      return pokemon.id;
+    });
+    console.log(savedPartyList);
+  };
   render() {
     const img = null;
 
@@ -59,6 +65,17 @@ class Party extends Component {
     return (
       <div className="container">
         <div className="row">{partyList}</div>
+        <div className="row mt-3">
+          <div className="col-sm">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => this.handleSaveClick()}
+            >
+              Save party
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
