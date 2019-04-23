@@ -11,7 +11,7 @@ class Party extends Component {
     const savedPartyList = this.props.party.map(pokemon => {
       return pokemon.id;
     });
-    console.log(savedPartyList);
+    localStorage.setItem("pokemonParty", savedPartyList);
   };
   render() {
     const img = null;
