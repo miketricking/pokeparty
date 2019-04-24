@@ -9,6 +9,14 @@ const initState = {
   ] // set the intial state to empty objects so using .map can display placeholder content until pokemon are selected
 };
 
+// get saved party from local storage
+const localParty = JSON.parse(localStorage.getItem("pokemonParty"));
+if (localParty.length > 0) {
+  console.log(localParty);
+  // before setting the init state below will need to go get these pokemon and return their data, or cache the whole pokemon rather than just the uid and id
+  // initState.party = localParty
+}
+
 const rootReducer = (state = initState, action) => {
   if (action.type === "ADD_POKEMON") {
     let foundFirstEmptyPoke = false;
