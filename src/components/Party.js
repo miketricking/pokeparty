@@ -4,14 +4,16 @@ import { removeFromParty } from "../actions/pokeActions.js";
 
 class Party extends Component {
   handleClick = uid => {
-    console.log(uid);
     this.props.removeFromParty(uid);
   };
   handleSaveClick = () => {
     const savedPartyList = this.props.party.map(pokemon => {
-      return pokemon.id;
+      return {
+        uid: pokemon.uid,
+        id: pokemon.id
+      };
     });
-    localStorage.setItem("pokemonParty", savedPartyList);
+    localStorage.setItem("pokemonParty", JSON.stringify(savedPartyList));
   };
   render() {
     const img = null;
