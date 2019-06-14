@@ -1,20 +1,19 @@
 const initState = {
   party: [
-    { uid: 0 },
-    { uid: 1 },
-    { uid: 2 },
-    { uid: 3 },
-    { uid: 4 },
-    { uid: 5 }
+    { uid: "0" },
+    { uid: "1" },
+    { uid: "2" },
+    { uid: "3" },
+    { uid: "4" },
+    { uid: "5" }
   ] // set the intial state to empty objects so using .map can display placeholder content until pokemon are selected
 };
 
 // get saved party from local storage
 const localParty = JSON.parse(localStorage.getItem("pokemonParty"));
+console.log(localParty);
 if (localParty != null && localParty.length > 0) {
-  console.log(localParty);
-  // before setting the init state below will need to go get these pokemon and return their data, or cache the whole pokemon rather than just the uid and id
-  // initState.party = localParty
+  initState.party = localParty;
 }
 
 const rootReducer = (state = initState, action) => {

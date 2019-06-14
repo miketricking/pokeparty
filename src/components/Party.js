@@ -7,13 +7,7 @@ class Party extends Component {
     this.props.removeFromParty(uid);
   };
   handleSaveClick = () => {
-    const savedPartyList = this.props.party.map(pokemon => {
-      return {
-        uid: pokemon.uid,
-        id: pokemon.id
-      };
-    });
-    localStorage.setItem("pokemonParty", JSON.stringify(savedPartyList));
+    localStorage.setItem("pokemonParty", JSON.stringify(this.props.party));
   };
   render() {
     const img = null;
