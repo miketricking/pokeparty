@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { removeFromParty } from "../actions/pokeActions.js";
+import { removeFromParty, deleteParty } from "../actions/pokeActions.js";
 
 class Party extends Component {
   handleClick = uid => {
@@ -8,6 +8,12 @@ class Party extends Component {
   };
   handleSaveClick = () => {
     localStorage.setItem("pokemonParty", JSON.stringify(this.props.party));
+  };
+  handleDeleteClick = () => {
+    if (localStorage.getItem("pokemonParty") !== null) {
+      localStorage.removeItem("pokemonParty");
+    }
+    this.props.deleteParty();
   };
   render() {
     const img = null;
@@ -24,9 +30,6 @@ class Party extends Component {
             <div className="card-body">
               <h5 className="card-title">???</h5>
               <p className="card-text">?</p>
-              <a href="#" className="btn btn-primary">
-                Add a pokemon
-              </a>
               <h3>{pokemon.uid}</h3>
             </div>
           </div>
@@ -49,9 +52,6 @@ class Party extends Component {
               >
                 Remove
               </button>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
               <h3>{pokemon.uid}</h3>
             </div>
           </div>
@@ -70,6 +70,13 @@ class Party extends Component {
             >
               Save party
             </button>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={() => this.handleDeleteClick()}
+            >
+              Delete party
+            </button>
           </div>
         </div>
       </div>
@@ -87,6 +94,9 @@ const mapDispatchToProps = dispatch => {
   return {
     removeFromParty: id => {
       dispatch(removeFromParty(id));
+    },
+    deleteParty: () => {
+      dispatch(deleteParty());
     }
   };
 };

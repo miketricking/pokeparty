@@ -11,8 +11,7 @@ const initState = {
 
 // get saved party from local storage
 const localParty = JSON.parse(localStorage.getItem("pokemonParty"));
-console.log(localParty);
-if (localParty != null && localParty.length > 0) {
+if (localParty !== null && localParty.length > 0) {
   initState.party = localParty;
 }
 
@@ -46,6 +45,18 @@ const rootReducer = (state = initState, action) => {
     const uid = "0-" + Math.random().toString();
     newArray.push({ uid: uid });
 
+    return {
+      ...state,
+      party: newArray
+    };
+  }
+
+  if (action.type === "REMOVE_ALL_POKEMON") {
+    const newArray = state.party.map(pokemon => {
+      return {
+        uid: pokemon.uid
+      };
+    });
     return {
       ...state,
       party: newArray
