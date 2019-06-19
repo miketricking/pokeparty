@@ -69,7 +69,7 @@ class PokemonSelector extends Component {
             <img
               src={pokemon.sprites.front_default}
               className="img-fluid"
-              alt="Responsive image"
+              alt="Pokemon"
             />
             {pokemon.name}
           </div>
