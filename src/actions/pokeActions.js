@@ -5,6 +5,12 @@ export const removeFromParty = uid => {
   };
 };
 
+export const deleteParty = () => {
+  return {
+    type: "REMOVE_ALL_POKEMON"
+  };
+};
+
 export const addToParty = pokemon => {
   return {
     type: "ADD_POKEMON",
